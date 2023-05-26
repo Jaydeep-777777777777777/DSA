@@ -1,4 +1,3 @@
-package dsa;
 import java.util.*;
 public class single_ll {
 	private node head;
@@ -66,6 +65,31 @@ public class single_ll {
     	}
 		
 	}	
+    //remove first
+    public void removefirst()
+    {
+    	node temp=head;
+    	if(head==null)
+    	{
+    		System.out.println("no element is present in list");
+    		return;
+    	}
+    	
+    		head=head.next;
+    		temp.next=null;
+    		length--;
+    		if(length==0)
+    		{
+    			
+    			tail=null;
+    			
+    		}
+    	
+    	System.out.println("remove element="+temp.value);
+    	
+    	
+    }
+    //add  last
      public void addlast() {
     	 Scanner sc=new Scanner(System.in);
  		System.out.println("enter an integer to add at the end of linked list");
@@ -84,6 +108,7 @@ public class single_ll {
          length++;
     	}
      		    }
+     //remove last
      public void removelast() {
            node temp=head;  
            node prev=head;
@@ -101,10 +126,11 @@ public class single_ll {
            tail=prev;
            tail.next=null;
            length--;
-           if(head.next==null)
+           if(length==0)
            {
         	   head=null;
         	   tail=null;
+        	  
            }
            System.out.println("remove element ="+temp.value);
      }
@@ -115,42 +141,13 @@ public class single_ll {
 		single_ll n1=new single_ll();
 		Scanner sc=new Scanner(System.in);
 		
-		System.out.println("which operation do you want to perform?");
-		System.out.println("---------------------------------------------");
-		System.out.println("1. Create linked list. \n2. Add element at begining od linked list.\n3. Add element at the end of the linkedlist.\n4. Print linked list.\n5. remove last element");
-		int n=sc.nextInt();
+	
 		
-		
-		switch(n)
+		while(true)
 		{
-		case 1:{
-			n1.createll();
-			break;
-		}
-		case 2:{
-			n1.addfirst();
-			break;
-		}
-		case 3:{
-			n1.addlast();
-			break;
-		}
-		case 4:{
-			n1.printlist();
-			break;
-		}
-		case 5:{
-			n1.removelast();
-			break;
-		}
-		}
-		System.out.println("Do you Want to perform more operation in linked list yes(y) orno (n)");
-		char ch=sc.next().charAt(0);
-
-		while(ch=='y'||ch=='Y')
-		{
-			System.out.println("enter your choice");
-			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist.\n3. Print linked list.\n4. remove last element");
+			System.out.println("\nenter your choice:");
+			System.out.println("-------------------");
+			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist.\n3. Print linked list.\n4. remove last element.\n5. remove first element.\n0. Exit");
 			int c=sc.nextInt();
 			switch(c)
 			{
@@ -171,16 +168,25 @@ public class single_ll {
 				n1.removelast();
 				break;
 			}
+			case 5:{
+				n1.removefirst();
+				break;
+			}
+			case 0:{
+				System.exit(0);
+				break;
+			}
+			default:
+			{
+				System.out.println("invalid choice");
+				break;
+			}
 			
 		}
 			
-			System.out.println("\nDo you Want to perform more operation in linked list yes(y) or no(n)");
-			char ch1=sc.next().charAt(0);
+			
 			
 		}
-		
-		
-//	
 //		System.out.println("head->"+n1.head.value);
 //		System.out.println("tail->"+n1.tail.value);
 //		System.out.println("length="+n1.length);
