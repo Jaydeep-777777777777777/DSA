@@ -134,11 +134,31 @@ public class single_ll {
            }
            System.out.println("remove element ="+temp.value);
      }
-	
+	//get element at particular index
+     public void getelement()
+     {
+    	 Scanner sc=new Scanner(System.in);
+    	 System.out.println("enter the index");
+    	 int index= sc.nextInt();
+         node temp=head;
+    	 if(index<0||index>=length) {
+    		 System.out.println("enter the valid index");
+    		 return;
+    		 
+    	 }
+    	 for(int i=0;i<index;i++)
+    	 {
+    		 temp=temp.next;
+    	 }
+    	 System.out.println("The value at index '"+index+"' is: "+temp.value);
+    	 
+     }
+     
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		single_ll n1=new single_ll();
+		
 		Scanner sc=new Scanner(System.in);
 		
 	
@@ -147,7 +167,8 @@ public class single_ll {
 		{
 			System.out.println("\nenter your choice:");
 			System.out.println("-------------------");
-			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist.\n3. Print linked list.\n4. remove last element.\n5. remove first element.\n0. Exit");
+			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist.\n3."
+					+ " Print linked list.\n4. remove last element.\n5. remove first element.\n6. Get a element at particular index.\n0. Exit");
 			int c=sc.nextInt();
 			switch(c)
 			{
@@ -170,6 +191,10 @@ public class single_ll {
 			}
 			case 5:{
 				n1.removefirst();
+				break;
+			}
+			case 6:{
+				n1.getelement();
 				break;
 			}
 			case 0:{
