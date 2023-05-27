@@ -1,6 +1,7 @@
+package dsa;
 import java.util.*;
 public class single_ll {
-	private node head;
+    private node head;
     private node tail;
     private int length;
 	class node
@@ -13,20 +14,7 @@ public class single_ll {
 		}
 		
 	}
-	//create the first node
-	public void createll()
-	{
-		Scanner sc=new Scanner(System.in);
-		System.out.println("enter the first integer in the linked list");
-		int n=sc.nextInt();
-		
-		node n1=new node(n); 
-		head=n1;
-		tail=n1; 
-		length=1;
-		
-		
-	}
+	
 	//print list
 	public void printlist()
 	{
@@ -153,22 +141,106 @@ public class single_ll {
     	 System.out.println("The value at index '"+index+"' is: "+temp.value);
     	 
      }
+     //change value at index
+     public void set()
+     { 
+    	 node temp=head;
+    	 Scanner sc=new Scanner(System.in);
+    	 System.out.println("enter the index which value you want to change");
+    	 int index= sc.nextInt();
+    	
+    	 if(index<0||index>=length) {
+    		 System.out.println("enter the valid index");
+    		 return;
+    		 
+    	 }
+    	 else 
+    	 {
+    	  System.out.println("enter the new value");
+    	  int n=sc.nextInt();
+    	  for(int i=0;i<index;i++)
+    	 {
+    		 temp=temp.next;
+    	 }
+    	  temp.value=n;
+    	 System.out.println("The value at index '"+index+"' successfully changed to:"+n);
+    	 } 	 
+     }
+	//insert at particular index
+     public void insert()
+     {
+    
+    	 Scanner sc=new Scanner(System.in);
+    	 System.out.println("enter the index");
+    	 int index= sc.nextInt();
+         node temp=head;
+         if(index<0||index>length) {
+    		 System.out.println("enter the valid index");
+    		 return;
+    		 
+    	 }
+         else if(index==0)
+         {
+         		addfirst();
+         	
+         		
+         }
+         else if(index==length)
+         {
+
+      		    addlast();
      
+      		   
+         }
+         else {
+        	 for(int i=1;i<index;i++)
+        	 {
+        		 temp=temp.next;
+        	 }
+        	
+        	 System.out.println("Enter the value you want to add");
+        	 int n=sc.nextInt();
+        	 node n1=new node(n);
+        	 n1.next=temp.next;
+        	 temp.next=n1;
+        	 length++;
+        	 System.out.println("The value is added successfully at index :"+index );
+         }
+     }
+     //head point
+
+	 public void head()
+	 {
+		 
+		 System.out.println("\nhead->"+head.value);
+	 }
+ 
+	 //tail point
+
+	 public void tail()
+	 {
+		 System.out.println("tail->"+tail.value);
+	 }
+	 //length
+
+	 public void len()
+	 {
+		 System.out.println("length->"+ length);
+	 }
 	
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		single_ll n1=new single_ll();
 		
 		Scanner sc=new Scanner(System.in);
-		
 	
-		
 		while(true)
 		{
 			System.out.println("\nenter your choice:");
 			System.out.println("-------------------");
-			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist.\n3."
-					+ " Print linked list.\n4. remove last element.\n5. remove first element.\n6. Get a element at particular index.\n0. Exit");
+			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist."
+					+ "\n3. Print linked list.\n4. remove last element.\n5. remove first element.\n6. Get a element at particular index."
+					+ "\n7. Change the value at  at particular index.\n8. Insert an element at particular index.\n0. Exit");
 			int c=sc.nextInt();
 			switch(c)
 			{
@@ -197,6 +269,14 @@ public class single_ll {
 				n1.getelement();
 				break;
 			}
+			case 7:{
+				n1.set();
+				break;
+			}
+			case 8:{
+				n1.insert();
+				break;
+			}
 			case 0:{
 				System.exit(0);
 				break;
@@ -210,12 +290,11 @@ public class single_ll {
 		}
 			
 			
-			
+			n1.head();
+			n1.tail();
+			n1.len();
 		}
-//		System.out.println("head->"+n1.head.value);
-//		System.out.println("tail->"+n1.tail.value);
-//		System.out.println("length="+n1.length);
-
+		
 	}
 
 }
