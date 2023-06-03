@@ -1,4 +1,4 @@
-package dsa;
+
 import java.util.*;
 public class single_ll {
     private node head;
@@ -60,23 +60,23 @@ public class single_ll {
     	if(head==null)
     	{
     		System.out.println("no element is present in list");
-    		return;
+    		return ;
     	}
-    	
-    		head=head.next;
-    		temp.next=null;
-    		length--;
-    		if(length==0)
+    	else if(length==0)
+    	{
+    		tail=null;
+    		
+    	}
+    		
+    	else
     		{
-    			
-    			tail=null;
-    			
+    			head=head.next;
+        		temp.next=null;
+        		length--;
+        		System.out.println("remove element="+temp.value);
     		}
     	
-    	System.out.println("remove element="+temp.value);
-    	
-    	
-    }
+     }
     //add  last
      public void addlast() {
     	 Scanner sc=new Scanner(System.in);
@@ -92,7 +92,7 @@ public class single_ll {
      	}
      	else {
          tail.next= n1;
-         tail=n1;
+         tail=n1; 
          length++;
     	}
      		    }
@@ -100,11 +100,19 @@ public class single_ll {
      public void removelast() {
            node temp=head;  
            node prev=head;
-           if(head==null)
+           if(length==1)
+           {
+        	   
+        	   head=null;
+        	   tail=null;
+        	   return;
+           }
+           else if(head==null)
            {
         	   System.out.println("no element is present in linked list");
         	   return;
            }
+         
            while(temp.next!=null)
            {
         	   prev=temp;
@@ -121,6 +129,7 @@ public class single_ll {
         	  
            }
            System.out.println("remove element ="+temp.value);
+	
      }
 	//get element at particular index
      public void getelement()
@@ -207,11 +216,90 @@ public class single_ll {
         	 System.out.println("The value is added successfully at index :"+index );
          }
      }
+     //remove from particular index
+     public void remove()
+     {
+    	 Scanner sc=new Scanner(System.in);
+    	 
+         node temp=head;
+         node prev=head;
+        
+         if (length==0)
+    	 {
+           System.out.println("there is no element present in linked list add the first element.");        	 
+           return;
+    		
+    	 }
+        if(length==1)
+    	  {
+    		  removefirst();
+    		  return;
+    	  }
+         
+          System.out.println("enter the index");
+     	  int index= sc.nextInt();
+        
+     	  if(index<0 || index>=length) 
+     	  {
+    		 System.out.println("enter a valid index");
+    	  }
+     	 
+     	  else if(index==0)
+    	 {
+    		 removefirst();
+    		 return;
+    	 }
+    	
+     	  else if(index==length-1)
+    	 {
+    		 removelast();
+    		 
+    	 }
+    	
+    	 else 
+    	 {
+    		 for(int i=0;i<index;i++)
+    		 {
+    			 prev=temp;
+    			 temp=temp.next;
+    			
+    		 }
+    		 prev.next=temp.next;
+    		 temp.next=null; 
+    		 length--;
+    		 
+    		 System.out.println(temp.value+" removed");
+    	 }
+     }
+     
+     //reverse list
+     public void reverse()
+     {    
+    	 node temp=head;
+     
+    	 head=tail;
+	     tail=temp;
+    	 
+    	 node before=null;
+    	 node after=temp.next;
+    	
+    	 
+    	 
+    	 for(int i=0;i<length;i++)
+    	 {
+    		 after=temp.next;
+    		 temp.next=before;
+    		 
+    		 before=temp;
+    		temp=after;
+    	 }
+    	 System.out.println("list is reversed");
+     }
      //head point
 
 	 public void head()
 	 {
-		 
+		 if(length>=2)
 		 System.out.println("\nhead->"+head.value);
 	 }
  
@@ -219,13 +307,15 @@ public class single_ll {
 
 	 public void tail()
 	 {
-		 System.out.println("tail->"+tail.value);
+		 if(length>=2)
+		 System.out.println("\ntail->"+tail.value);
 	 }
 	 //length
 
 	 public void len()
+
 	 {
-		 System.out.println("length->"+ length);
+		 System.out.println("\nlength->"+ length);
 	 }
 	
 	 public static void main(String[] args) {
@@ -240,7 +330,7 @@ public class single_ll {
 			System.out.println("-------------------");
 			System.out.println("1. Add element at begining of linked list.\n2. Add element at the end of the linkedlist."
 					+ "\n3. Print linked list.\n4. remove last element.\n5. remove first element.\n6. Get a element at particular index."
-					+ "\n7. Change the value at  at particular index.\n8. Insert an element at particular index.\n0. Exit");
+					+ "\n7. Change the value at  at particular index.\n8. Insert an element at particular index.\n9. Remove.\n10.Reverse the List.\n0. Exit");
 			int c=sc.nextInt();
 			switch(c)
 			{
@@ -275,6 +365,14 @@ public class single_ll {
 			}
 			case 8:{
 				n1.insert();
+				break;
+			}
+			case 9:{
+				n1.remove();
+				break;
+			}
+			case 10:{
+				n1.reverse();
 				break;
 			}
 			case 0:{
